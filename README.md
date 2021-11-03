@@ -17,24 +17,6 @@ $sh sandbox.sh
 
 $source export.sh
 
-# Source cluster  (us-east-1 region)
-
-# Step 1:Build Custom AMI with Packer
-https://github.com/cssporg/packer
-
-
-
-# Step 3: Provisioning infrastructure with Terraform
-https://github.com/cssporg/terraform
-
-# Step 4: Installing and configuring Web server using Ansible
-https://github.com/cssporg/ansible
-
-# Step 5: Result
-http://PUBLICIP:80
-
-
-
 # Destination cluster  (us-west-2 region)
 
 # Step 1:Build Custom AMI with Packer
