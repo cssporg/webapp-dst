@@ -3,23 +3,28 @@ This project is intended to touch and feel containerized Web Application.
 
 
 # Destination cluster  (us-west-2 region)
+Step 1: Clone the the repo
 
+$git clone https://github.com/cssporg/terraform.git
 
-# Step 3: Provisioning infrastructure with Terraform
-https://github.com/cssporg/terraform
+Step 2: Changes in config.json
 
-# Destination cluster
-
-$git clone https://github.com/cssporg/infra_manager.git
-
-$cd infra_manager
+$cd terraform
 
 $vi config.json
 
 mykeypair : ""
 
+"myregion" : ""
+
 myamiid : ""
 
+"rds_mysql_db" : {
+  "recover" : "true",
+  "snapshot_names" : "rds-mysql-db-snp"
+}
+
+Step 3: Changes in modules/computing/ec2/instances.tf file
 
 $ vi modules/computing/ec2/instances.tf
 
@@ -37,15 +42,11 @@ default = [
 
 }
 
-
-#subnet_id = "${var.enable_user_defined_ips ? element(var.appsubnet, element(split(":", element(var.appserver_pa_ips, count.index)),1)) : element(var.appsubnet, count.index)}"
-
-#private_ip = "${var.enable_user_defined_ips ? element(split(":", element(var.appserver_pa_ips, count.index),0)) : ""}"
-
 subnet_id = "${element(var.appsubnet, element(split(",", element(var.wrpilwsn, count.index)), 1))}"
 
 private_ip = "${element(split(",", element(var.wrpilwsn, count.index)), 0)}"
 
+Step 4: Execute terraform apply
 
 $terraform init .
 
@@ -53,21 +54,5 @@ $terraform validate -var-file=config.json
 
 $terraform apply -var-file=config.json
 
-
-
-# After disaster
-
-vi config.json
-
-"rds_mysql_db" : {
-  "recover" : "true",
-  "snapshot_names" : "rds-mysql-db-snp"
-}
-
-
-
-# Step 4: Installing and configuring Web server using Ansible
-https://github.com/cssporg/ansible
-
-# Step 5: Result
+# Step 5: take public ip of lb1 instance
 http://PUBLICIP:80
