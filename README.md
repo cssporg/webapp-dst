@@ -3,11 +3,11 @@ This project is intended to touch and feel containerized Web Application.
 
 
 # Destination cluster  (us-west-2 region)
-Step 1: Clone the the repo
+# Step 1: Clone the the repo
 
 $git clone https://github.com/cssporg/terraform.git
 
-Step 2: Changes in config.json
+# Step 2: Changes in config.json
 
 $cd terraform
 
@@ -24,7 +24,7 @@ myamiid : ""
   "snapshot_names" : "rds-mysql-db-snp"
 }
 
-Step 3: Changes in modules/computing/ec2/instances.tf file
+# Step 3: Changes in modules/computing/ec2/instances.tf file
 
 $ vi modules/computing/ec2/instances.tf
 
@@ -46,7 +46,7 @@ subnet_id = "${element(var.appsubnet, element(split(",", element(var.wrpilwsn, c
 
 private_ip = "${element(split(",", element(var.wrpilwsn, count.index)), 0)}"
 
-Step 4: Execute terraform apply
+# Step 4: Execute terraform apply
 
 $terraform init .
 
