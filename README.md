@@ -1,9 +1,7 @@
 # Project Title
 This project is intended to touch and feel containerized Web Application. 
 
-
-# Destination cluster  (us-west-2 region)
-# Step 1: Clone the the repo
+# Step 1: Bring up destination cluster
 
 $git clone https://github.com/cssporg/terraform.git
 
