@@ -54,4 +54,8 @@ $terraform apply -var-file=config.json
 
 # Step 5: take public ip of lb1 instance and app1 instance and run ansible playbook
 sudo systemctl start docker && sudo groupadd docker && sudo usermod -aG docker $USER && sudo chmod 777 /var/run/docker.sock
+$sh /etc/csp/boot_scripts/play-books.sh
+
+OR
+
 http://PUBLICIP:80
